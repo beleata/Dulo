@@ -119,6 +119,8 @@
                 <a href="#about" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">За нас</a>
                 <a href="#dulo" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Династия Дуло</a>
                 <a href="#join" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Присъедини се</a>
+                <a href="#" onclick="openTips();return false;"  class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Полезни съвети</a>
+                <!-- <button onclick="openTips()" class="btn-primary mt-4 text-base">Полезни съвети за War Thunder</button> -->
                 <a href="#contact" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Връзки</a>
             </div>
         </div>
@@ -142,40 +144,52 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-16 bg-gray-900 text-gray-200 scroll-snap-section">
+    <!-- About Us Section with Tabs -->
+    <section id="about-tabs" class="py-16 bg-gray-900 text-gray-200 scroll-snap-section">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 section-heading">За нас - War Thunder България</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Кои сме ние?</h3>
-                    <p class="text-lg leading-relaxed">
-                        Нашият клан е съставен от ентусиасти на играта, като възрастовият диапазон е от 14 до 65 години.
-                        Ние ценим толерантността и уважението към всеки съотборник. Тук ще намерите както опитни ветерани,
-                        така и нови играчи, готови да се включат в епични битки.
-                    </p>
-                    <p class="text-lg leading-relaxed mt-4">
-                        <span class="font-bold text-yellow-300">Трима от нашите членове са сред Топ 2000 играчи по ефективност в света.</span> Освен това, <span class="font-bold text-yellow-300">един от нашите членове е класиран в Топ 20 на корабните битки!</span> Това е доказателство за уменията и отдадеността в нашия клан!
-                    </p>
-                </div>
-                <div class="card">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Какво правим?</h3>
-                    <p class="text-lg leading-relaxed">
-                        Ние сме изключително активни в клановите битки, като редовно участваме в тях.
-                        Това е <span class="font-bold text-green-300">третият ни сезон</span>, в който се състезаваме,
-                        и към момента сме горди да заявим, че сме в <span class="font-bold text-green-300">Топ 60 на световната ранглиста!</span>
-                    </p>
-                    <p class="text-lg leading-relaxed mt-4">
-                        Вярваме в силата на екипната игра, взаимната подкрепа и постоянното усъвършенстване.
-                        Независимо дали сте нов играч, търсещ насоки, или ветеран, готов за предизвикателства,
-                        при нас ще намерите своето място.
-                    </p>
+            <!-- Tab Navigation -->
+            <div class="flex justify-center mb-8">
+                <button id="tab-about-btn" class="tab-btn px-6 py-2 font-semibold rounded-t-lg bg-gray-800 text-blue-400 border-b-2 border-blue-400 focus:outline-none">
+                    За нас
+                </button>
+            </div>
+            <!-- Tab Contents -->
+            <div id="tab-about" class="tab-content">
+                <h2 class="text-4xl font-bold text-center mb-12 section-heading">За нас - War Thunder България</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-400">Кои сме ние?</h3>
+                        <p class="text-lg leading-relaxed">
+                            Нашият клан е съставен от ентусиасти на играта, като възрастовият диапазон е от 14 до 65 години.
+                            Ние ценим толерантността и уважението към всеки съотборник. Тук ще намерите както опитни ветерани,
+                            така и нови играчи, готови да се включат в епични битки.
+                        </p>
+                        <p class="text-lg leading-relaxed mt-4">
+                            <span class="font-bold text-yellow-300">Трима от нашите членове са сред Топ 2000 играчи по ефективност в света.</span> Освен това, <span class="font-bold text-yellow-300">един от нашите членове е класиран в Топ 20 на корабните битки!</span> Това е доказателство за уменията и отдадеността в нашия клан!
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-400">Какво правим?</h3>
+                        <p class="text-lg leading-relaxed">
+                            Ние сме изключително активни в клановите битки, като редовно участваме в тях.
+                            Това е <span class="font-bold text-green-300">третият ни сезон</span>, в който се състезаваме,
+                            и към момента сме горди да заявим, че сме в <span class="font-bold text-green-300">Топ 60 на световната ранглиста!</span>
+                        </p>
+                        <p class="text-lg leading-relaxed mt-4">
+                            Вярваме в силата на екипната игра, взаимната подкрепа и постоянното усъвършенстване.
+                            Независимо дали сте нов играч, търсещ насоки, или ветеран, готов за предизвикателства,
+                            при нас ще намерите своето място.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+        <style>
+            .tab-btn { transition: color 0.2s, border-color 0.2s; }
+            .tab-content.hidden { display: none; }
+        </style>
     </section>
-
+ 
     <!-- Dynasty Dulo Section -->
     <section id="dulo" class="py-16 bg-gray-800 text-gray-200 scroll-snap-section">
         <div class="container mx-auto px-4">
@@ -215,15 +229,14 @@
                         тя полага основите на българската държавност и култура. Чрез тях прабългарският елемент се слива със славянския,
                         формирайки българската народност.
                     </p>
-                    <p class="text-lg leading-relaxed mt-4">
-                        Династия Дуло остава в историята като създател на българската държава и като един от ключовите фактори,
-                        допринесли за нейното утвърждаване в ранното средновековие.
+                    <p claжда          ss="text-lg leading-relaxed mt-4">
+жда          Династия Дуло остава в  създателда        и актори,
+жда       допринесли за нейното утвърждаване в ранното средновековие.
                     </p>
                 </div>
             </div>
 
-            <div class="card">
-                <h3 class="text-2xl font-semibold mb-4 text-blue-400">Ключови владетели и тяхната роля</h3>
+            <div class="cardждаване                           <h3 class="text-2xl font-semibold mb-4 text-blue-400">Ключови владетели и тяхната роля</h3>
                 <ul class="list-disc list-inside text-lg leading-relaxed space-y-3">
                     <li>
                         <span class="font-bold">Кубрат (VII век):</span> Смятан е за основоположник на Велика България (или Стара Велика България) в района на днешна Украйна (черноморските степи). Той успява да обедини прабългарските племена и да се откъсне от зависимостта на Аварския хаганат. Според легендата за снопа пръчки, Кубрат съветва синовете си да останат обединени след смъртта му, за да оцелеят.
@@ -232,7 +245,7 @@
                         <span class="font-bold">Аспарух (края на VII век):</span> Син на Кубрат. След разпадането на Велика България под хазарски натиск, Аспарух повежда част от прабългарите на запад и през 680-681 г. преминава река Дунав. Той основава Дунавска България, като сключва съюз с местните славянски племена и налага контрол над териториите. През 681 г. Византия е принудена да признае новата държава, което бележи създаването на днешна България.
                     </li>
                     <li>
-                        <span class="font-bold">Тервел (началото на VIII век):</span> Син на Аспарух. Той е един от най-значимите ранни български владетели. Тервел играе ключова роля в битката при Константинопол през 717-718 г., като помага на Византия срещу арабската обсада. Заради това той получава титлата "кесар" – безпрецедентно отличие за чужд владетел. Неговото управление утвърждава международния престиж на младата българска държава.
+                        <span class="font-bold">Тервел (началото на VIII век):</span> Син на Аспарух. Той е един от най-значимите ранни български владетели. Тервел играе ключова роля в битката при Константинопол през 717-718 г., като помага на Византия срещу арабската обсада. Заради това той получава титлата "кесар" – безпрецедентно отличие за чужд владетел. Неговото управление утвърджава международния престиж на младата българска държава.
                     </li>
                     <li>
                         <span class="font-bold">Следващи владетели:</span> Династията Дуло управлява България до средата на VIII век. След Тервел следват Севар, Кормесий и други, чиито управления са белязани от вътрешни борби и конфликти с Византия. Династията приключва с убийството на кан Севар около 753 г., след което започва период на политическа нестабилност и чести смени на владетели, известен като "време на междуцарствие".
@@ -329,8 +342,14 @@
         <div class="container mx-auto">
             <p>&copy; 2025 Дуло - War Thunder България. Всички права запазени.</p>
             <p class="mt-2 text-sm">Създадено с гордост за българската гейминг общност.</p>
+            <!-- <button onclick="openTips()" class="btn-primary mt-4 text-base">Полезни съвети за War Thunder</button> -->
         </div>
     </footer>
-
-</body>
-</html>
+    <script>
+        function openTips() {
+            
+            const win = window.open('popup.html', 'mywin2', 'location=0,menubar=0,status=0,scrollbars=1,width=900,height=800');
+            
+        }
+    </script>
+<!-- ...existing code... -->
