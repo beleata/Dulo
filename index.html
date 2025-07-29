@@ -149,9 +149,9 @@
         <div class="container mx-auto px-4">
             <!-- Tab Navigation -->
             <div class="flex justify-center mb-8">
-                <button id="tab-about-btn" class="tab-btn px-6 py-2 font-semibold rounded-t-lg bg-gray-800 text-blue-400 border-b-2 border-blue-400 focus:outline-none">
+                <!-- <button id="tab-about-btn" class="tab-btn px-6 py-2 font-semibold rounded-t-lg bg-gray-800 text-blue-400 border-b-2 border-blue-400 focus:outline-none" style="cursor: default;">
                     За нас
-                </button>
+                </button> -->
             </div>
             <!-- Tab Contents -->
             <div id="tab-about" class="tab-content">
@@ -229,14 +229,15 @@
                         тя полага основите на българската държавност и култура. Чрез тях прабългарският елемент се слива със славянския,
                         формирайки българската народност.
                     </p>
-                    <p claжда          ss="text-lg leading-relaxed mt-4">
-жда          Династия Дуло остава в  създателда        и актори,
-жда       допринесли за нейното утвърждаване в ранното средновековие.
+                    <p class="text-lg leading-relaxed mt-4">
+                        Династия Дуло остава в историята като една от най-влиятелните и значими династии,
+                        създателна на българската държава и култура.
                     </p>
                 </div>
             </div>
 
-            <div class="cardждаване                           <h3 class="text-2xl font-semibold mb-4 text-blue-400">Ключови владетели и тяхната роля</h3>
+            <div class="card">
+                <h3 class="text-2xl font-semibold mb-4 text-blue-400">Ключови владетели и тяхната роля</h3>
                 <ul class="list-disc list-inside text-lg leading-relaxed space-y-3">
                     <li>
                         <span class="font-bold">Кубрат (VII век):</span> Смятан е за основоположник на Велика България (или Стара Велика България) в района на днешна Украйна (черноморските степи). Той успява да обедини прабългарските племена и да се откъсне от зависимостта на Аварския хаганат. Според легендата за снопа пръчки, Кубрат съветва синовете си да останат обединени след смъртта му, за да оцелеят.
@@ -346,10 +347,94 @@
         </div>
     </footer>
     <script>
+        // Lightbox logic
         function openTips() {
+            // If already open, do nothing
+            if (document.getElementById('tips-lightbox')) return;
+            // Create lightbox elements
+            const backdrop = document.createElement('div');
+            backdrop.id = 'tips-lightbox';
+            backdrop.style.position = 'fixed';
+            backdrop.style.top = 0;
+            backdrop.style.left = 0;
+            backdrop.style.width = '100vw';
+            backdrop.style.height = '100vh';
+            backdrop.style.background = 'rgba(0,0,0,0.75)';
+            backdrop.style.display = 'flex';
+            backdrop.style.alignItems = 'center';
+            backdrop.style.justifyContent = 'center';
+            backdrop.style.zIndex = 10000;
+
+            // Modal container
+            const modal = document.createElement('div');
+            modal.style.position = 'relative';
+            modal.style.background = '#222';
+            modal.style.borderRadius = '1rem';
+            modal.style.boxShadow = '0 8px 32px rgba(0,0,0,0.5)';
             
-            const win = window.open('popup.html', 'mywin2', 'location=0,menubar=0,status=0,scrollbars=1,width=900,height=800');
-            
+            modal.style.maxWidth = '90vw';
+            modal.style.maxHeight = '90vh';
+            modal.style.width = '900px';
+            modal.style.height = '800px';
+            modal.style.display = 'flex';
+            modal.style.flexDirection = 'column';
+            modal.style.overflow = 'visible';
+            modal.style.borderRadius = '8px';
+
+            // Close button
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '&times;';
+            closeBtn.setAttribute('aria-label', 'Затвори');
+            closeBtn.style=`
+                position: absolute;
+                top: -40px;
+                right: -48px;
+                font-size: 2rem;
+                background: white;
+                color: black;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                line-height: 1;
+                z-index: 2;
+            `;
+            closeBtn.addEventListener('click', closeTips);
+
+            // Iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = 'popup.html';
+            iframe.style.border = 'none';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.flex = '1 1 auto';
+            iframe.setAttribute('title', 'Полезни съвети');
+
+            // Append elements
+            modal.appendChild(closeBtn);
+            modal.appendChild(iframe);
+            backdrop.appendChild(modal);
+            document.body.appendChild(backdrop);
+
+            // Close on backdrop click
+            backdrop.addEventListener('click', function(e) {
+                if (e.target === backdrop) closeTips();
+            });
+
+            // ESC key closes
+            document.addEventListener('keydown', escListener);
+        }
+
+        function closeTips() {
+            const lb = document.getElementById('tips-lightbox');
+            if (lb) lb.remove();
+            document.removeEventListener('keydown', escListener);
+        }
+
+        function escListener(e) {
+            if (e.key === 'Escape') closeTips();
         }
     </script>
-<!-- ...existing code... -->
+</body>
+</html>
