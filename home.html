@@ -52,6 +52,10 @@
             transition: all 0.5s ease;
         }
         
+        .landing-bg.black-white {
+            background: url('./black and white.jpg') center center/cover no-repeat;
+        }
+        
         .landing-overlay {
             position: absolute;
             top: 0;
@@ -405,9 +409,47 @@
             }
         }
         
+        // Scan line effect for switching images
+        let scanPassCount = 0;
+        let lastTriggerPosition = -1;
+        let isBlackWhite = false;
+        
+        function handleScanLineEffect() {
+            const scanLine = document.getElementById('scanLine');
+            const landingBg = document.getElementById('landingBg');
+            
+            // Get current position of scan line
+            const rect = scanLine.getBoundingClientRect();
+            const scanPosition = rect.top / window.innerHeight;
+            
+            // Trigger effect at specific position (around 30-35% down the screen)
+            const triggerPosition = 0.32 + (Math.random() * 0.06); // Random between 0.32 and 0.38
+            
+            if (scanPosition > triggerPosition && scanPosition < triggerPosition + 0.02 && Math.abs(scanPosition - lastTriggerPosition) > 0.1) {
+                lastTriggerPosition = scanPosition;
+                
+                if (scanPassCount % 2 === 0) {
+                    // Switch to black and white
+                    console.log('Switching to black and white');
+                    landingBg.classList.add('black-white');
+                    isBlackWhite = true;
+                } else {
+                    // Switch back to color
+                    console.log('Switching back to color');
+                    landingBg.classList.remove('black-white');
+                    isBlackWhite = false;
+                }
+                
+                scanPassCount++;
+            }
+        }
+        
         // Initialize particles on page load
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
+            
+            // Set up interval to check scan line position
+            setInterval(handleScanLineEffect, 30); // Check every 30ms for smooth detection
         });
         
         // Add some interactive effects
