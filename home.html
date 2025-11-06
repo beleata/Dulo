@@ -522,6 +522,7 @@
         // Enhanced scan line effects
         let scanPassCount = 0;
         let lastTriggerPosition = -1;
+        let isDarkMode = false;
         
         function handleScanLineEffects() {
             const scanLine = document.getElementById('scanLine');
@@ -546,6 +547,7 @@
                     landingBg.classList.remove('glitch-normal');
                     landingBg.classList.add('glitch-dark');
                     landingOverlay.classList.add('hidden');
+                    isDarkMode = true;
                     
                     // Trigger glass crack effect
                     glassCrackOverlay.classList.remove('active');
@@ -563,12 +565,24 @@
                         staticNoise.classList.remove('active');
                     }, 600);
                     
+                    // Auto-restore after 2 seconds if not already restored
+                    setTimeout(() => {
+                        if (isDarkMode) {
+                            console.log('Auto-restoring normal mode');
+                            landingBg.classList.remove('glitch-dark');
+                            landingBg.classList.add('glitch-normal');
+                            landingOverlay.classList.remove('hidden');
+                            isDarkMode = false;
+                        }
+                    }, 2000);
+                    
                 } else {
                     // Second pass - restore normal with enhanced colors
                     console.log('Triggering normal effect');
                     landingBg.classList.remove('glitch-dark');
                     landingBg.classList.add('glitch-normal');
                     landingOverlay.classList.remove('hidden');
+                    isDarkMode = false;
                 }
                 
                 scanPassCount++;
