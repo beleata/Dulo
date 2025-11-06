@@ -49,6 +49,11 @@
             height: 100%;
             background: url('./DULO_sait.jpg') center center/cover no-repeat;
             z-index: -2;
+            transition: filter 0.3s ease;
+        }
+        
+        .landing-bg.glitch-effect {
+            filter: brightness(0.2) contrast(1.5) saturate(0);
         }
         
         .landing-overlay {
@@ -218,7 +223,8 @@
                         var(--accent-green) 50%, 
                         transparent 100%);
             animation: scan-line 4s linear infinite;
-            z-index: 0;
+            z-index: 10;
+            box-shadow: 0 0 10px var(--accent-green);
         }
         
         @keyframes scan-line {
@@ -235,6 +241,38 @@
             100% {
                 top: 100%;
                 opacity: 0;
+            }
+        }
+        
+        .glass-crack {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.1) 2px, rgba(255, 255, 255, 0.1) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.05) 2px, rgba(255, 255, 255, 0.05) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255, 255, 255, 0.03) 1px, rgba(255, 255, 255, 0.03) 2px),
+                repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 255, 255, 0.03) 1px, rgba(255, 255, 255, 0.03) 2px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            animation: glass-crack-effect 0.3s ease-out;
+        }
+        
+        @keyframes glass-crack-effect {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1);
             }
         }
         
@@ -333,14 +371,17 @@
 </head>
 <body>
     <div class="landing-page">
-        <div class="landing-bg"></div>
+        <div class="landing-bg" id="landingBg"></div>
         <div class="landing-overlay"></div>
         
         <!-- Animated particles -->
         <div class="particles" id="particles"></div>
         
         <!-- Scan line effect -->
-        <div class="scan-line"></div>
+        <div class="scan-line" id="scanLine"></div>
+        
+        <!-- Glass crack effect container -->
+        <div id="glassCrackContainer"></div>
         
         <!-- Main content -->
         <div class="landing-container">
@@ -397,8 +438,50 @@
             }
         }
         
+        // Create glass crack effect
+        function createGlassCrack() {
+            const container = document.getElementById('glassCrackContainer');
+            const crack = document.createElement('div');
+            crack.classList.add('glass-crack');
+            container.appendChild(crack);
+            
+            // Remove the crack effect after animation completes
+            setTimeout(() => {
+                crack.remove();
+            }, 300);
+        }
+        
+        // Scan line effects
+        let scanPassCount = 0;
+        function handleScanLineEffects() {
+            const scanLine = document.getElementById('scanLine');
+            const landingBg = document.getElementById('landingBg');
+            
+            // Get current position of scan line
+            const rect = scanLine.getBoundingClientRect();
+            const scanPosition = rect.top / window.innerHeight;
+            
+            // Trigger effects at specific positions
+            if (scanPosition > 0.3 && scanPosition < 0.35) {
+                if (scanPassCount % 2 === 0) {
+                    // First pass - make image dark and create glass crack
+                    landingBg.classList.add('glitch-effect');
+                    createGlassCrack();
+                } else {
+                    // Second pass - restore normal color
+                    landingBg.classList.remove('glitch-effect');
+                }
+                scanPassCount++;
+            }
+        }
+        
         // Initialize particles on page load
-        document.addEventListener('DOMContentLoaded', createParticles);
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Set up interval to check scan line position
+            setInterval(handleScanLineEffects, 50);
+        });
         
         // Add some interactive effects
         document.addEventListener('mousemove', (e) => {
