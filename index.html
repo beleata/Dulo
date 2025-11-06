@@ -4,437 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дуло - War Thunder България</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text */
-        }
-        .section-heading {
-            border-bottom: 2px solid #4a5568; /* Subtle underline */
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
-            color: #cbd5e0; /* Slightly lighter heading color */
-        }
-        .card {
-            background-color: #2d3748; /* Darker card background */
-            border-radius: 0.75rem; /* Rounded corners */
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .btn-primary {
-            background-color: #4299e1; /* Blue button */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #3182ce; /* Darker blue on hover */
-        }
-        .nav-link {
-            color: #cbd5e0;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #a0aec0;
-        }
-        /* Custom scroll-snap for smooth navigation */
-        .scroll-snap-container {
-            scroll-snap-type: y mandatory;
-        }
-        .scroll-snap-section {
-            scroll-snap-align: start;
-        }
-
-        /* Specific styling for the IYI symbol */
-        .iyi-symbol {
-            display: block;
-            margin: 2rem auto;
-            width: 100px;
-            height: 100px;
-            color: #cbd5e0; /* Light grey color to match the theme */
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); /* Shadow for the symbol */
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.125rem;
-            }
-            .section-heading {
-                font-size: 2rem;
-            }
-            .card {
-                padding: 1rem;
-            }
-            .btn-primary {
-                font-size: 0.9rem;
-                padding: 0.6rem 1.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            .nav-link {
-                display: block;
-                margin: 0.5rem 0;
-            }
-            .section-heading {
-                font-size: 1.75rem;
-            }
-            .btn-primary {
-                width: 100%;
-                text-align: center;
-            }
-            .card {
-                padding: 0.8rem;
-            }
-        }
-        .bg-black2{
-            background-color: transparent!important;
-        }
-    </style>
+    <meta name="description" content="Официален уебсайт на ескадрила Дуло - българската общност в War Thunder">
+    <meta name="keywords" content="War Thunder, Дуло, България, ескадрила, клан, танкове, самолети, кораби">
+    <meta name="author" content="Дуло - War Thunder България">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Дуло - War Thunder България">
+    <meta property="og:description" content="Официален уебсайт на ескадрила Дуло - българската общност в War Thunder">
+    <meta property="og:image" content="./assets/images/logo.png">
+    <meta property="og:url" content="https://dulo-warthunder.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
 </head>
-<body class="scroll-snap-container">
-
-    <!-- Navigation Bar -->
-    <nav class="bg-gray-800 p-4 fixed w-full z-10 shadow-lg rounded-b-lg">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-white rounded-md p-2 hover:bg-gray-700 transition-colors mb-2 md:mb-0" style="    letter-spacing: 4px;" ><img class="iyi-symbol" src="Khans_Dulo_of_Bulgaria.png" style="margin:0;display:inline-block;width:auto;height:48px ; padding-right: 12px;" >Дуло</a>
-            <div class="space-x-2 md:space-x-4 flex flex-wrap justify-center">
-                <a href="#hero" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Начало</a>
-                <a href="#about" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">За нас</a>
-                <a href="#dulo" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Династия Дуло</a>
-                <a href="#join" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Присъедини се</a>
-                <a href="#" onclick="openTips();return false;"  class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Полезни съвети</a>
-                <!-- <button onclick="openTips()" class="btn-primary mt-4 text-base">Полезни съвети за War Thunder</button> -->
-                <a href="#contact" class="nav-link px-3 py-2 rounded-md hover:bg-gray-700 transition-colors">Връзки</a>
+<body>
+    <!-- HUD Navigation -->
+    <header class="hud-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <span class="dulo-symbol">IYI</span>
+                    <span class="logo-text">ДУЛО WAR THUNDER</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">ONLINE</span>
+                </div>
             </div>
         </div>
-    </nav>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="index.html">ЗА НАС</a>
+                    <span class="nav-indicator active"></span>
+                </li>
+                <li class="nav-item">
+                    <a href="istoriya.html">ИСТОРИЯ</a>
+                    <span class="nav-indicator"></span>
+                </li>
+                <li class="nav-item">
+                    <a href="polezni-saveti.html">СЪВЕТИ</a>
+                    <span class="nav-indicator"></span>
+                </li>
+                <li class="nav-item">
+                    <a href="prisuedini-se.html">ПРИСЪЕДИНИ СЕ</a>
+                    <span class="nav-indicator"></span>
+                </li>
+                <li class="nav-item">
+                    <a href="vruzki.html">ВРЪЗКИ</a>
+                    <span class="nav-indicator"></span>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden scroll-snap-section"
-        style="background-image: url('image.webp'); background-size: initial; background-position: top center; background-repeat: no-repeat; background-position-y: 68px; ">
-        <!-- Overlay for text readability -->
-        <div class="absolute inset-0 bg-black2 opacity-50 z-0"></div>
-        <div class="relative z-10 p-4 bg-black bg-opacity-50 rounded-lg shadow-xl max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight hero-title">Добре дошли в Дуло - War Thunder България!</h1>
-            <p class="text-xl md:text-2xl mb-8 hero-subtitle">
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-symbol">IYI</div>
+            <h1 class="hero-title">ДОБРЕ ДОШЛИ В ДУЛО - WAR THUNDER БЪЛГАРИЯ!</h1>
+            <p class="hero-subtitle">
                 Ние сме активно и приятелско общество от български геймъри, обединени от страстта си към War Thunder.
                 Тук ще намерите не само съотборници за епични битки, но и връзка с богатото историческо наследство на България чрез името на нашата общност – Дуло.
             </p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="#join" class="btn-primary text-lg inline-block hover:scale-105 transform transition-transform">Присъедини се към нас!</a>
-                <a href="https://discord.gg/J2DVKnFG" target="_blank" class="btn-primary text-lg inline-block hover:scale-105 transform transition-transform">Разгледай нашия Дискорд!</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section with Tabs -->
-    <section id="about-tabs" class="py-16 bg-gray-900 text-gray-200 scroll-snap-section">
-        <div class="container mx-auto px-4">
-            <!-- Tab Navigation -->
-            <div class="flex justify-center mb-8">
-                <!-- <button id="tab-about-btn" class="tab-btn px-6 py-2 font-semibold rounded-t-lg bg-gray-800 text-blue-400 border-b-2 border-blue-400 focus:outline-none" style="cursor: default;">
-                    За нас
-                </button> -->
-            </div>
-            <!-- Tab Contents -->
-            <div id="tab-about" class="tab-content">
-                <h2 class="text-4xl font-bold text-center mb-12 section-heading">За нас - War Thunder България</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-4 text-blue-400">Кои сме ние?</h3>
-                        <p class="text-lg leading-relaxed">
-                            Нашият клан е съставен от ентусиасти на играта, като възрастовият диапазон е от 14 до 65 години.
-                            Ние ценим толерантността и уважението към всеки съотборник. Тук ще намерите както опитни ветерани,
-                            така и нови играчи, готови да се включат в епични битки.
-                        </p>
-                        <p class="text-lg leading-relaxed mt-4">
-                            <span class="font-bold text-yellow-300">Трима от нашите членове са сред Топ 2000 играчи по ефективност в света.</span> Освен това, <span class="font-bold text-yellow-300">един от нашите членове е класиран в Топ 20 на корабните битки!</span> Това е доказателство за уменията и отдадеността в нашия клан!
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3 class="text-2xl font-semibold mb-4 text-blue-400">Какво правим?</h3>
-                        <p class="text-lg leading-relaxed">
-                            Ние сме изключително активни в клановите битки, като редовно участваме в тях.
-                            Това е <span class="font-bold text-green-300">третият ни сезон</span>, в който се състезаваме,
-                            и към момента сме горди да заявим, че сме в <span class="font-bold text-green-300">Топ 60 на световната ранглиста!</span>
-                        </p>
-                        <p class="text-lg leading-relaxed mt-4">
-                            Вярваме в силата на екипната игра, взаимната подкрепа и постоянното усъвършенстване.
-                            Независимо дали сте нов играч, търсещ насоки, или ветеран, готов за предизвикателства,
-                            при нас ще намерите своето място.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <style>
-            .tab-btn { transition: color 0.2s, border-color 0.2s; }
-            .tab-content.hidden { display: none; }
-        </style>
-    </section>
- 
-    <!-- Dynasty Dulo Section -->
-    <section id="dulo" class="py-16 bg-gray-800 text-gray-200 scroll-snap-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Династия Дуло - Основателите на България</h2>
-
-            <div class="card mb-8">
-                <h3 class="text-2xl font-semibold mb-4 text-blue-400">Въведение</h3>
-                <p class="text-lg leading-relaxed">
-                    Името на нашата общност е вдъхновено от Династия Дуло – една от най-важните и обсъждани династии в ранната българска история,
-                    пряко свързана с основаването на Дунавска България. Тя символизира сила, устойчивост и обединение,
-                    качества, които ценим и в нашата гейминг общност.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div class="card">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Произход и ранни теории</h3>
-                    <p class="text-lg leading-relaxed mb-4">
-                        <span class="font-bold">Тюркски произход:</span> Общоприето е, че династия Дуло е с тюркски произход.
-                        Някои изследователи я свързват с рода Ашина, управлявал Тюркския хаганат, докато други виждат връзки с хунския род Дуло.
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        <span class="font-bold">Именник на българските канове:</span> Основен източник за династията е "Именник на българските канове",
-                        който изброява ранните владетели и дава информация за техния род и продължителност на управление.
-                        В него се споменава, че Дуло е първият род, управлявал българите.
-                    </p>
-                </div>
-                <div class="card">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Символика и наследство</h3>
-                    <p class="text-lg leading-relaxed mb-4">
-                        <span class="font-bold">Символът "IYI" (ІYІ):</span> Смята се, че този символ, известен като ипсилон с две хасти,
-                        е бил свързан с династия Дуло и е възможно да е служил като техен герб или родов знак.
-                        Той е открит на редица археологически обекти, свързани с прабългарите.
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        <span class="font-bold">Име и влияние:</span> Въпреки че династията управлява сравнително кратко (около век и половина от Кубрат до Севар),
-                        тя полага основите на българската държавност и култура. Чрез тях прабългарският елемент се слива със славянския,
-                        формирайки българската народност.
-                    </p>
-                    <p class="text-lg leading-relaxed mt-4">
-                        Династия Дуло остава в историята като една от най-влиятелните и значими династии,
-                        създателна на българската държава и култура.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="text-2xl font-semibold mb-4 text-blue-400">Ключови владетели и тяхната роля</h3>
-                <ul class="list-disc list-inside text-lg leading-relaxed space-y-3">
-                    <li>
-                        <span class="font-bold">Кубрат (VII век):</span> Смятан е за основоположник на Велика България (или Стара Велика България) в района на днешна Украйна (черноморските степи). Той успява да обедини прабългарските племена и да се откъсне от зависимостта на Аварския хаганат. Според легендата за снопа пръчки, Кубрат съветва синовете си да останат обединени след смъртта му, за да оцелеят.
-                    </li>
-                    <li>
-                        <span class="font-bold">Аспарух (края на VII век):</span> Син на Кубрат. След разпадането на Велика България под хазарски натиск, Аспарух повежда част от прабългарите на запад и през 680-681 г. преминава река Дунав. Той основава Дунавска България, като сключва съюз с местните славянски племена и налага контрол над териториите. През 681 г. Византия е принудена да признае новата държава, което бележи създаването на днешна България.
-                    </li>
-                    <li>
-                        <span class="font-bold">Тервел (началото на VIII век):</span> Син на Аспарух. Той е един от най-значимите ранни български владетели. Тервел играе ключова роля в битката при Константинопол през 717-718 г., като помага на Византия срещу арабската обсада. Заради това той получава титлата "кесар" – безпрецедентно отличие за чужд владетел. Неговото управление утвърджава международния престиж на младата българска държава.
-                    </li>
-                    <li>
-                        <span class="font-bold">Следващи владетели:</span> Династията Дуло управлява България до средата на VIII век. След Тервел следват Севар, Кормесий и други, чиито управления са белязани от вътрешни борби и конфликти с Византия. Династията приключва с убийството на кан Севар около 753 г., след което започва период на политическа нестабилност и чести смени на владетели, известен като "време на междуцарствие".
-                    </li>
-                </ul>
-            </div>
-            <!-- IYI Symbol -->
-            <img class="iyi-symbol" src="Khans_Dulo_of_Bulgaria.png">                
-            <p class="text-center text-sm text-gray-400">Символът "IYI" (ІYІ) - родов знак на династия Дуло</p>
-        </div>
-    </section>
-
-    <!-- Join Us Section -->
-    <section id="join" class="py-16 bg-gray-900 text-gray-200 text-center scroll-snap-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold mb-12 section-heading">Присъедини се към Дуло - War Thunder България!</h2>
-            <p class="text-xl leading-relaxed mb-8 max-w-3xl mx-auto">
-                Ако сте българин, фен на War Thunder и търсите сплотен екип, вие сте добре дошли при нас,
-                независимо от вашата възрастова група или опит в играта!
+            <h2>ЗАЩО Е ДУЛО?</h2>
+            <p>
+                Името на нашата общност е вдъхновено от Династия Дуло – една от най-важните и обсъждани династии в ранната българска история,
+                пряко свързана с основаването на Дунавска България. Тя символизира сила, устойчивост и обединение,
+                качества, които ценим и в нашата гейминг общност.
             </p>
-            <p class="text-xl leading-relaxed mb-10 max-w-3xl mx-auto">
-                Най-лесният начин да станете част от нашата общност е чрез нашия <span class="font-bold text-purple-400">Discord канал</span>.
-                Там винаги ще намерите съотборници за игра. Обикновено след 17:00 часа има поне 7-8 активни играчи,
-                готови за битки и забавление.
-            </p>
-            <a href="https://discord.gg/J2DVKnFG" target="_blank" class="btn-primary text-2xl inline-flex items-center space-x-3 hover:scale-105 transform transition-transform">
-                <!-- Discord Icon (from previous immersive, more detailed) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.73 4.29C17.73 3.17 15.54 2.44 13.25 2.05A21.05 21.05 0 0 0 12 2c-2.25 0-4.45.4-6.69 1.14C3.17 4.29 1.27 7.15 1 10.08a21.78 21.78 0 0 0 2.76 10.43c.87.6 1.8.96 2.78 1.25a21.08 21.08 0 0 0 5.46 0c.98-.29 1.91-.65 2.78-1.25a21.78 21.78 0 0 0 2.76-10.43c-.27-2.93-2.17-5.79-4.17-7.69zm-3.36 12.01c-.6.5-1.27.87-2.01 1.13a16.82 16.82 0 0 1-4.72 0c-.74-.26-1.41-.63-2.01-1.13a1.9 1.9 0 0 1-.61-1.24c0-.7.34-1.3.99-1.63a10.02 10.02 0 0 0 2.92-1.38c.6-.33 1.1-.73 1.48-1.18a.86.86 0 0 1 .1-.1c.38-.45.88-.85 1.48-1.18a10.02 10.02 0 0 0 2.92 1.38c.65.33.99.93.99 1.63a1.9 1.9 0 0 1-.61 1.24zM12 10.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-                </svg>
-                <span>Присъедини се към Discord канала!</span>
-            </a>
+            <a href="za-nas.html" class="cta-button">НАУЧЕТЕ ПОВЕЧЕ ЗА НАС!</a>
+        </div>
+        <div class="scan-line"></div>
+    </section>
 
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div class="card text-left">
-                    <h4 class="text-xl font-semibold mb-2 text-blue-300">Съотборници</h4>
-                    <p>Намерете съотборници за игра във всички режими на War Thunder.</p>
+    <!-- Advantages Section -->
+    <section class="advantages">
+        <div class="container">
+            <h2 class="section-title">ЗАЩО ДУЛО?</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="card-icon">
+                        <span class="icon-rank">60</span>
+                    </div>
+                    <h3>ТОП 60 В СВЕТА</h3>
+                    <h4>Кланови битки</h4>
+                    <p>Трети сезон в клановите битки, горди да заявим, че сме в Топ 60 на световната ранглиста!</p>
                 </div>
-                <div class="card text-left">
-                    <h4 class="text-xl font-semibold mb-2 text-blue-300">Кланови битки</h4>
-                    <p>Възможност за участие в кланови битки и издигане в световната ранглиста.</p>
+                <div class="advantage-card">
+                    <div class="card-icon">
+                        <span class="icon-players">3</span>
+                    </div>
+                    <h3>3 ТОП 2000 ИГРАЧИ</h3>
+                    <h4>Опитни играчи</h4>
+                    <p>Трима от нашите членове са сред Топ 2000 играчи по ефективност в света.</p>
                 </div>
-                <div class="card text-left">
-                    <h4 class="text-xl font-semibold mb-2 text-blue-300">Общност</h4>
-                    <p>Приятелска и подкрепяща общност от български геймъри.</p>
-                </div>
-                <div class="card text-left">
-                    <h4 class="text-xl font-semibold mb-2 text-blue-300">Опит и стратегии</h4>
-                    <p>Споделяне на опит, тактики и стратегии за играта.</p>
-                </div>
-                <div class="card text-left">
-                    <h4 class="text-xl font-semibold mb-2 text-blue-300">Забавление</h4>
-                    <p>Гарантирано забавление и добри моменти с единомишленици.</p>
+                <div class="advantage-card">
+                    <div class="card-icon">
+                        <span class="icon-ships">20</span>
+                    </div>
+                    <h3>1 ТОП 20 КОРАБНИ БИТКИ</h3>
+                    <h4>Морски специалисти</h4>
+                    <p>Един от нашите членове е класиран в Топ 20 на корабните битки!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact/Links Section -->
-    <section id="contact" class="py-16 bg-gray-800 text-gray-200 text-center scroll-snap-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold mb-12 section-heading">Контакти и Полезни Връзки</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <div class="card flex flex-col items-center">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Официална Facebook Страница</h3>
-                    <p class="text-lg mb-4">Следете ни и на нашата официална Facebook страница за новини, събития и обяви:</p>
-                    <a href="https://www.facebook.com/profile.php?id=61578347467881&notif_id=1753483481472498&notif_t=follower_invite&ref=notif" target="_blank" class="btn-primary inline-flex items-center space-x-2 hover:scale-105 transform transition-transform">
-                        <!-- Facebook Icon (from previous immersive, more detailed) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.477 2 2 6.477 2 12c0 5.016 3.657 9.18 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.505 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.262c-1.225 0-1.628.761-1.628 1.547V12h2.773l-.443 2.89h-2.33V21.879C18.343 21.18 22 17.016 22 12c0-5.523-4.477-10-10-10z"/>
-                        </svg>
-                        <span>War Thunder България във Facebook</span>
-                    </a>
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">БОЙНИТЕ ПОЛЕТА НА ДУЛО</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="image-placeholder tank-bg"></div>
+                    </div>
+                    <h3>ТАНКОВИ БИТКИ</h3>
+                    <p>Епични сухопътни битки с мощни танкове и стратегия.</p>
+                    <a href="polezni-saveti.html" class="gallery-link">НАУЧЕТЕ ПОВЕЧЕ</a>
                 </div>
-                <div class="card flex flex-col items-center">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400" style="padding-bottom: 7px;">Discord Канал</h3><br>
-                    <p class="text-lg mb-4">Присъединете се към нашия Discord за директна комуникация и търсене на съотборници:</p>
-                    <a href="https://discord.gg/J2DVKnFG" target="_blank" class="btn-primary inline-flex items-center space-x-2 hover:scale-105 transform transition-transform">
-                        <!-- Discord Icon (from previous immersive, more detailed) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.73 4.29C17.73 3.17 15.54 2.44 13.25 2.05A21.05 21.05 0 0 0 12 2c-2.25 0-4.45.4-6.69 1.14C3.17 4.29 1.27 7.15 1 10.08a21.78 21.78 0 0 0 2.76 10.43c.87.6 1.8.96 2.78 1.25a21.08 21.08 0 0 0 5.46 0c.98-.29 1.91-.65 2.78-1.25a21.78 21.78 0 0 0 2.76-10.43c-.27-2.93-2.17-5.79-4.17-7.69zm-3.36 12.01c-.6.5-1.27.87-2.01 1.13a16.82 16.82 0 0 1-4.72 0c-.74-.26-1.41-.63-2.01-1.13a1.9 1.9 0 0 1-.61-1.24c0-.7.34-1.3.99-1.63a10.02 10.02 0 0 0 2.92-1.38c.6-.33 1.1-.73 1.48-1.18a.86.86 0 0 1 .1-.1c.38-.45.88-.85 1.48-1.18a10.02 10.02 0 0 0 2.92 1.38c.65.33.99.93.99 1.63a1.9 1.9 0 0 1-.61 1.24zM12 10.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-                        </svg>
-                        <span>Discord на War Thunder България</span>
-                    </a>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="image-placeholder plane-bg"></div>
+                    </div>
+                    <h3>ВЪЗДУШНИ БИТКИ</h3>
+                    <p>Доминирайте небето с изключителни пилоти и маневри.</p>
+                    <a href="polezni-saveti.html" class="gallery-link">НАУЧЕТЕ ПОВЕЧЕ</a>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <div class="image-placeholder ship-bg"></div>
+                    </div>
+                    <h3>МОРСКИ БИТКИ</h3>
+                    <p>Епични морски сражения с мощни бойни кораби и флотилии.</p>
+                    <a href="polezni-saveti.html" class="gallery-link">НАУЧЕТЕ ПОВЕЧЕ</a>
                 </div>
             </div>
-            <p class="text-lg mt-8">За общи въпроси можете да се свържете с администраторите на Discord канала.</p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-symbol">IYI</div>
+                <h2 class="cta-title">ГОТОВИ ЛИ СТЕ ЗА ЕПИЧНИ БИТКИ?</h2>
+                <p class="cta-subtitle">Присъединете се към най-активната българска общност в War Thunder!</p>
+                <div class="cta-buttons">
+                    <a href="prisuedini-se.html" class="cta-button primary">ПРИСЪЕДИНИ СЕ КЪМ НАС</a>
+                    <a href="vruzki.html" class="cta-button secondary">СВЪРЖЕТЕ СЕ С НАС</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 p-6 text-gray-400 text-center rounded-t-lg">
-        <div class="container mx-auto">
-            <p>&copy; 2025 Дуло - War Thunder България. Всички права запазени.</p>
-            <p class="mt-2 text-sm">Създадено с гордост за българската гейминг общност.</p>
-            <!-- <button onclick="openTips()" class="btn-primary mt-4 text-base">Полезни съвети за War Thunder</button> -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Дуло - War Thunder България. Всички права запазени.</p>
+                <p>Създадено с гордост за българската гейминг общност.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61578347467881" target="_blank" class="social-link">
+                        <span class="social-icon facebook"></span>
+                    </a>
+                    <a href="https://discord.gg/J2DVKnFG" target="_blank" class="social-link">
+                        <span class="social-icon discord"></span>
+                    </a>
+                    <a href="#" target="_blank" class="social-link">
+                        <span class="social-icon youtube"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
-    <script>
-        // Lightbox logic
-        function openTips() {
-            // If already open, do nothing
-            if (document.getElementById('tips-lightbox')) return;
-            // Create lightbox elements
-            const backdrop = document.createElement('div');
-            backdrop.id = 'tips-lightbox';
-            backdrop.style.position = 'fixed';
-            backdrop.style.top = 0;
-            backdrop.style.left = 0;
-            backdrop.style.width = '100vw';
-            backdrop.style.height = '100vh';
-            backdrop.style.background = 'rgba(0,0,0,0.75)';
-            backdrop.style.display = 'flex';
-            backdrop.style.alignItems = 'center';
-            backdrop.style.justifyContent = 'center';
-            backdrop.style.zIndex = 10000;
 
-            // Modal container
-            const modal = document.createElement('div');
-            modal.style.position = 'relative';
-            modal.style.background = '#222';
-            modal.style.borderRadius = '1rem';
-            modal.style.boxShadow = '0 8px 32px rgba(0,0,0,0.5)';
-            
-            modal.style.maxWidth = '90vw';
-            modal.style.maxHeight = '90vh';
-            modal.style.width = '900px';
-            modal.style.height = '800px';
-            modal.style.display = 'flex';
-            modal.style.flexDirection = 'column';
-            modal.style.overflow = 'visible';
-            modal.style.borderRadius = '8px';
-
-            // Close button
-            const closeBtn = document.createElement('button');
-            closeBtn.innerHTML = '&times;';
-            closeBtn.setAttribute('aria-label', 'Затвори');
-            closeBtn.style=`
-                position: absolute;
-                top: -40px;
-                right: -48px;
-                font-size: 2rem;
-                background: white;
-                color: black;
-                border: none;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                cursor: pointer;
-                line-height: 1;
-                z-index: 2;
-            `;
-            closeBtn.addEventListener('click', closeTips);
-
-            // Iframe
-            const iframe = document.createElement('iframe');
-            iframe.src = 'popup.html';
-            iframe.style.border = 'none';
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.flex = '1 1 auto';
-            iframe.setAttribute('title', 'Полезни съвети');
-
-            // Append elements
-            modal.appendChild(closeBtn);
-            modal.appendChild(iframe);
-            backdrop.appendChild(modal);
-            document.body.appendChild(backdrop);
-
-            // Close on backdrop click
-            backdrop.addEventListener('click', function(e) {
-                if (e.target === backdrop) closeTips();
-            });
-
-            // ESC key closes
-            document.addEventListener('keydown', escListener);
-        }
-
-        function closeTips() {
-            const lb = document.getElementById('tips-lightbox');
-            if (lb) lb.remove();
-            document.removeEventListener('keydown', escListener);
-        }
-
-        function escListener(e) {
-            if (e.key === 'Escape') closeTips();
-        }
-    </script>
+    <!-- JavaScript -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/animations.js"></script>
 </body>
 </html>
