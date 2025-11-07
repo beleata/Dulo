@@ -55,6 +55,52 @@ body.za-nas-background {
     background-size: cover;
 }
 
+/* ===== DARKENED BACKGROUNDS FOR SPECIFIC PAGES ===== */
+body[style*="0.jpg"] {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
+                url('../../0.jpg') center/cover no-repeat fixed !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+body[style*="1.jpg"] {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
+                url('../../1.jpg') center/cover no-repeat fixed !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+body[style*="2.jpg"] {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
+                url('../../2.jpg') center/cover no-repeat fixed !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+body[style*="3.jpg"] {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
+                url('../../3.jpg') center/cover no-repeat fixed !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+body[style*="4.jpg"] {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
+                url('../../4.jpg') center/cover no-repeat fixed !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -818,6 +864,7 @@ section {
 .tips-content .tips-intro p,
 .tips-content .tip-card p,
 .join-content .join-intro p,
+.join-content .benefits-section p,
 .join-content .requirements-section p,
 .join-content .how-to-join-section p,
 .contact-content .contact-form-section p,
@@ -842,6 +889,7 @@ section {
 .about-content .values-section p::before,
 .tips-content .tips-intro p::before,
 .tips-content .tip-card p::before,
+.join-content .benefits-section p::before,
 .contact-content .contact-form-section p::before,
 .contact-content .useful-links-section p::before,
 .contact-content .admin-card p::before {
@@ -868,6 +916,7 @@ section {
 .tips-content .tips-intro p:hover,
 .tips-content .tip-card p:hover,
 .join-content .join-intro p:hover,
+.join-content .benefits-section p:hover,
 .join-content .requirements-section p:hover,
 .join-content .how-to-join-section p:hover,
 .contact-content .contact-form-section p:hover,
@@ -899,3 +948,135 @@ section {
 .icon-team { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E"); }
 .icon-mission { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E"); }
 .icon-strategy { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'/%3E%3C/svg%3E"); }
+
+/* ===== MUSIC PLAYER STYLES ===== */
+.music-player {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(26, 26, 26, 0.9);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 25px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.music-player:hover {
+    border-color: rgba(0, 255, 136, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    transform: translateY(-2px);
+}
+
+.music-toggle {
+    background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.music-toggle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                transparent 100%);
+    transition: left 0.5s ease;
+}
+
+.music-toggle:hover::before {
+    left: 100%;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
+
+.music-icon {
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.music-toggle.playing .music-icon {
+    animation: pulse 1.5s infinite;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.music-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--accent-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* Mobile responsive for music player */
+@media (max-width: 768px) {
+    .music-player {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+    
+    .music-toggle {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .music-icon {
+        font-size: 16px;
+    }
+    
+    .music-title {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-player {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+    }
+    
+    .music-toggle {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .music-icon {
+        font-size: 14px;
+    }
+    
+    .music-info {
+        display: none;
+    }
+}

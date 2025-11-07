@@ -30,6 +30,12 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="./mix_25m03s (audio-joiner.com).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
     <style>
         html,body{
             padding:0;margin:0;
@@ -408,6 +414,138 @@
                 font-size: 1rem;
             }
         }
+        
+        /* ===== MUSIC PLAYER STYLES ===== */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 25px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .music-player:hover {
+            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .music-toggle {
+            background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .music-toggle::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                        transparent 0%, 
+                        rgba(255, 255, 255, 0.2) 50%, 
+                        transparent 100%);
+            transition: left 0.5s ease;
+        }
+        
+        .music-toggle:hover::before {
+            left: 100%;
+        }
+        
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+        
+        .music-toggle:active {
+            transform: scale(0.95);
+        }
+        
+        .music-icon {
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .music-toggle.playing .music-icon {
+            animation: pulse 1.5s infinite;
+        }
+        
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .music-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        /* Mobile responsive for music player */
+        @media (max-width: 768px) {
+            .music-player {
+                top: 15px;
+                right: 15px;
+                padding: 8px 12px;
+            }
+            
+            .music-toggle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .music-icon {
+                font-size: 16px;
+            }
+            
+            .music-title {
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .music-player {
+                top: 10px;
+                right: 10px;
+                padding: 6px 10px;
+            }
+            
+            .music-toggle {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .music-icon {
+                font-size: 14px;
+            }
+            
+            .music-info {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -447,6 +585,16 @@
             <a href="#" target="_blank" class="social-link-landing">
                 <span class="social-icon-landing youtube"></span>
             </a>
+        </div>
+        
+        <!-- Music Player -->
+        <div class="music-player" id="musicPlayer">
+            <button class="music-toggle" id="musicToggle" title="Включи/Изключи музика">
+                <span class="music-icon" id="musicIcon">🎵</span>
+            </button>
+            <div class="music-info">
+                <span class="music-title">Dulo Theme</span>
+            </div>
         </div>
     </div>
     
@@ -494,6 +642,18 @@
             createParticles();
         });
         
+        // Add fade animation for messages
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateY(-10px); }
+                20% { opacity: 1; transform: translateY(0); }
+                80% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
         // Add some interactive effects
         // document.addEventListener('mousemove', (e) => {
         //     const x = e.clientX / window.innerWidth;
@@ -510,5 +670,8 @@
         //     }
         // });
     </script>
+    
+    <!-- Music Player Script -->
+    <script src="./assets/js/music-player.js"></script>
 </body>
 </html>
