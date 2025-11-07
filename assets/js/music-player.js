@@ -149,11 +149,8 @@ function initGlobalAudio() {
     globalAudio.preload = 'auto';
     globalAudio.crossOrigin = 'anonymous';
     
-    // Set sources
-    globalAudio.innerHTML = `
-        <source src="dulo-music-small.wav" type="audio/wav">
-        <source src="mix_25m03s (audio-joiner.com).mp3" type="audio/mpeg">
-    `;
+    // Set sources - use the existing MP3 file
+    globalAudio.src = 'mix_25m03s (audio-joiner.com).mp3';
     
     // Load the audio
     globalAudio.load();
