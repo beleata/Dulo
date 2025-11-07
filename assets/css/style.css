@@ -46,6 +46,15 @@ body.background-page {
     background-size: cover;
 }
 
+body.za-nas-background {
+    background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
+                url('../../background.gif') center/cover no-repeat fixed;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
