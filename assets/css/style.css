@@ -39,7 +39,7 @@ body {
 /* ===== BACKGROUND IMAGE FOR SPECIFIC PAGES ===== */
 body.background-page {
     background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)),
-                url('../sait_background.webp') center/cover no-repeat fixed;
+                url('../../sait_background.webp') center/cover no-repeat fixed;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
