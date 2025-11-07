@@ -764,6 +764,121 @@ section {
     margin: 0 5px;
 }
 
+/* ===== PARAGRAPH STYLING WITH THIN BORDERS ===== */
+.content-paragraph {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-paragraph::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--accent-green) 50%, 
+                transparent 100%);
+    opacity: 0.5;
+}
+
+.content-paragraph:hover {
+    border-color: rgba(0, 255, 136, 0.4);
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+}
+
+.content-paragraph p {
+    margin-bottom: 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.content-paragraph p:last-child {
+    margin-bottom: 0;
+}
+
+/* Apply paragraph styling to specific sections */
+.history-content .history-intro p,
+.history-content .history-section p,
+.history-content .legacy-info p,
+.history-content .end-dynasty p,
+.about-content .about-section p,
+.about-content .achievements-section p,
+.about-content .values-section p,
+.tips-content .tips-intro p,
+.tips-content .tip-card p,
+.join-content .join-intro p,
+.join-content .requirements-section p,
+.join-content .how-to-join-section p,
+.contact-content .contact-form-section p,
+.contact-content .useful-links-section p,
+.contact-content .admin-card p {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.history-content .history-intro p::before,
+.history-content .history-section p::before,
+.history-content .legacy-info p::before,
+.history-content .end-dynasty p::before,
+.about-content .about-section p::before,
+.about-content .achievements-section p::before,
+.about-content .values-section p::before,
+.tips-content .tips-intro p::before,
+.tips-content .tip-card p::before,
+.contact-content .contact-form-section p::before,
+.contact-content .useful-links-section p::before,
+.contact-content .admin-card p::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--accent-green) 50%, 
+                transparent 100%);
+    opacity: 0.5;
+}
+
+.history-content .history-intro p:hover,
+.history-content .history-section p:hover,
+.history-content .legacy-info p:hover,
+.history-content .end-dynasty p:hover,
+.about-content .about-section p:hover,
+.about-content .achievements-section p:hover,
+.about-content .values-section p:hover,
+.tips-content .tips-intro p:hover,
+.tips-content .tip-card p:hover,
+.join-content .join-intro p:hover,
+.join-content .requirements-section p:hover,
+.join-content .how-to-join-section p:hover,
+.contact-content .contact-form-section p:hover,
+.contact-content .useful-links-section p:hover,
+.contact-content .admin-card p:hover {
+    border-color: rgba(0, 255, 136, 0.4);
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+}
+
 /* ===== ICONS ===== */
 .icon-team, .icon-mission, .icon-strategy, .icon-cannon, .icon-ammo, .icon-cover, 
 .icon-angle, .icon-headphones, .icon-sound, .icon-scan, .icon-respawn, 
